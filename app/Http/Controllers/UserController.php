@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->paginate){
+        if ($request->paginate) {
             $users = User::paginate(10);
 
             return UserResource::collection($users);
@@ -24,7 +24,6 @@ class UserController extends Controller
         $users = User::all();
 
         return UserResource::collection($users);
-
     }
 
 
@@ -33,9 +32,9 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-         $user = User::create($request->validated());
+        $user = User::create($request->validated());
 
-         return $user;
+        return UserResource::make($user);
     }
 
     /**
@@ -43,7 +42,15 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                "message" => "no record found"
+            ]);
+        }
+
+        return UserResource::make($user);
     }
 
     /**
@@ -53,11 +60,12 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        if($user){
+        if ($user) {
             $user->update($request->validated());
         }
 
-        return $user;
+        return UserResource::make($user);
+
     }
 
     /**
@@ -65,12 +73,19 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
 
-        if($user){
-            $user->delete();
+        if (!$user) {
+
+            return response()->json([
+                "message" => "no record found"
+            ]);
         }
 
-        return $user;
+        $user->delete();
+
+        return  response()->json([
+            "message" => "User Deleted SuccessFully"
+        ]);
     }
 }

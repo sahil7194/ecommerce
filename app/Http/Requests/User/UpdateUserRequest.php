@@ -11,7 +11,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             'password'  => 'required|string|min:8',
             'phone'     => 'required|numeric',
             'gender'    => 'required|in:male,female',
-            'dob'       => 'require|date|date_format:d-m-Y',
+            'dob'       => 'required|date|date_format:d-m-Y',
         ];
     }
 }
