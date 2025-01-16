@@ -11,6 +11,13 @@ class Order extends Model
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory, SoftDeletes;
 
+    /**
+     * The attributes that are not assignable.
+     *
+     * @var list<string>
+     */
+    protected $guarded = ['id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,5 +26,10 @@ class Order extends Model
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class,"order_product","order_id","product_id");
     }
 }

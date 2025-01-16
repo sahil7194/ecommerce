@@ -18,8 +18,8 @@ class AddressResource extends JsonResource
             "street"  => $this->street,
             "city"    => $this->city,
             "type"    => $this->type,
-            "state"   => $this->state,
-            "country" => $this->country
+            "state"   => StateResource::make( $this->state),
+            "country" => CountryResource::make($this->country)
         ];
     }
 }

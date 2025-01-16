@@ -22,18 +22,20 @@ class OrderFactory extends Factory
 
         $address = Address::inRandomOrder()->first();
 
-        return [
-            "status" => fake()->randomElements([
+        $status = [
                 "Pending",
                 "Processing",
                 "Shipped",
                 "Delivered",
-                "Cancelled"
-            ]),
-            "total_amount" => fake()->numberBetween(100, 100000),
-            "instructions" => fake()->paragraph(5),
-            "address_id"   => $user->id,
-            "user_id"      => $address->id
+                "Cancelled"];
+
+        return [
+            "status"       => fake()->randomElement($status),
+            "total_amount" => fake()->numberBetween(100,10000),
+            "instructions" => fake()->paragraph(4),
+            "address_id"   => $address->id,
+            "user_id"      => $user->id
+
         ];
     }
 }
