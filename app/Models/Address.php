@@ -28,4 +28,9 @@ class Address extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
