@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\OrderCreated;
+use App\Events\OrderUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +19,17 @@ class Order extends Model
      * @var list<string>
      */
     protected $guarded = ['id'];
+
+    protected static function booted(): void
+    {
+        static::created(function ($user) {
+            event(new OrderCreated($user));
+        });
+
+        static::updated(function ($user) {
+            event(new OrderUpdated($user));
+        });
+    }
 
     public function user()
     {
