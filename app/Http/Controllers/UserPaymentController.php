@@ -28,11 +28,13 @@ class UserPaymentController extends Controller
         return new UserPaymentResource($payment);
     }
 
-    public function store(CreateUserPaymentRequest $request)
+    public function store(CreateUserPaymentRequest $request, int $id)
     {
         $params = $request->validated();
 
         $params["status"] = "success";
+
+        $params["order_id"] = $id;
 
         $payment = UserPayment::create($params);
 

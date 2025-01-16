@@ -17,4 +17,13 @@ class VendorPayment extends Model
      * @var list<string>
      */
     protected $guarded = ['id'];
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
+
+    public function vendor()
+   {
+    return $this->belongsTo(Vendor::class);
+   }
 }

@@ -22,7 +22,6 @@ class CreateUserPaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "order_id"  => 'required|numeric',
             "user_id"   => 'required|numeric',
             "amount"    => 'required|numeric',
             "mode"      => 'required|string',

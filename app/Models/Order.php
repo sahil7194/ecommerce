@@ -20,7 +20,7 @@ class Order extends Model
      */
     protected $guarded = ['id'];
 
-    protected static function booted(): void
+    protected static function booted()
     {
         static::created(function ($user) {
             event(new OrderCreated($user));
@@ -43,7 +43,7 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class,"order_product","order_id","product_id");
+        return $this->belongsToMany(Product::class,"order_product","order_id","product_id")->withPivot('quantity', 'price');;
     }
 
     public function payment()
