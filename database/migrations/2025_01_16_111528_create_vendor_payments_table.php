@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('vendor_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("amount");
-            $table->string("payment_mode");
+            $table->string("mode");
             $table->string("status");
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');

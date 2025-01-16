@@ -32,4 +32,9 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class,"order_product","order_id","product_id");
     }
+
+    public function payment()
+    {
+        return $this->hasOne(UserPayment::class);
+    }
 }

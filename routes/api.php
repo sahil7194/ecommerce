@@ -7,8 +7,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPaymentController;
 use App\Http\Controllers\VendorController;
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,3 +26,10 @@ Route::post('order',[OrderController::class,'store']);
 Route::put('order/{id}',[OrderController::class,"update"]);
 
 Route::get("users/{id}/orders", [OrderController::class, "userOrders"]);
+
+
+Route::post('order/{id}/payment',[UserPaymentController::class,"store"]);
+
+Route::get('users/{userId}/payments',[UserPaymentController::class,"index"]);
+Route::get('payments/{paymentId}',[UserPaymentController::class,"show"]);
+Route::put('payments/{paymentId}',[UserPaymentController::class,"update"]);
