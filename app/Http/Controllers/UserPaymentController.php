@@ -12,7 +12,7 @@ class UserPaymentController extends Controller
 {
     public function index(string $userId)
     {
-        $payments = UserPayment::where('user_id', $userId)->all();
+        $payments = UserPayment::where('user_id', $userId)->get();
 
         return UserPaymentResource::collection($payments);
     }
@@ -43,7 +43,7 @@ class UserPaymentController extends Controller
 
     public function update(UpdateUserPaymentRequest $request, string $userId)
     {
-        $payment = UserPayment::where('user_id', $userId)->get();
+        $payment = UserPayment::where('user_id', $userId)->get()->first();
 
         if (!$payment) {
             return response()->json([

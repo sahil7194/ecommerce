@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Product\CreateProductRequest;
+use App\Http\Requests\Product\SearchProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
@@ -86,5 +87,14 @@ class ProductController extends Controller
         return  response()->json([
             "message" => "product Deleted SuccessFully"
         ]);
+    }
+
+    public function search(SearchProductRequest $request)
+    {
+        $products = Product::where('name', 'LIKE', $request->query)
+                            ->where('description', 'LIKE', $request->query)
+                            ->get();
+        dd($products);
+       return ProductResource::collection($products);
     }
 }

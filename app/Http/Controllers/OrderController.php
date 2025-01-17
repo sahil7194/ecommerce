@@ -7,10 +7,10 @@ use App\Http\Requests\Order\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-
     public function show(string $orderId)
     {
         $order = Order::find($orderId);
