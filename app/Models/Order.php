@@ -50,4 +50,9 @@ class Order extends Model
     {
         return $this->hasOne(UserPayment::class);
     }
+
+    public function shipment()
+    {
+        return $this->hasMany(Shipment::class);
+    }
 }
