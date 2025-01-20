@@ -15,8 +15,8 @@ This is the backend system for a **Multi-Vendor E-Commerce Platform**. It is des
 1. **Clone the GitHub repository**:
 
     ```bash
-    git clone https://github.com/your-repository-url.git
-    cd your-project-directory
+    git clone [https://github.com/your-repository-url.git](https://github.com/sahil7194/ecommerce)
+    cd ecommerce
     ```
 
 2. **Install dependencies using Composer**:
