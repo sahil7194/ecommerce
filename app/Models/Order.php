@@ -20,17 +20,6 @@ class Order extends Model
      */
     protected $guarded = ['id'];
 
-    protected static function booted()
-    {
-        static::created(function ($user) {
-            event(new OrderCreated($user));
-        });
-
-        static::updated(function ($user) {
-            event(new OrderUpdated($user));
-        });
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
